@@ -1,0 +1,166 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine?</title>
+
+<style>
+body {
+margin: 0;
+height: 100vh;
+background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+display: flex;
+justify-content: center;
+align-items: center;
+font-family: Arial, sans-serif;
+}
+
+.box {
+background: white;
+padding: 40px 50px;
+border-radius: 25px;
+text-align: center;
+box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+position: relative;
+max-width: 360px;
+}
+
+.teddy {
+font-size: 90px;
+margin-bottom: 10px;
+}
+
+h1 {
+color: #ff4d6d;
+margin-bottom: 25px;
+}
+
+.buttons {
+margin-bottom: 35px;
+}
+
+button {
+padding: 12px 30px;
+font-size: 18px;
+border: none;
+border-radius: 30px;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+#yes {
+background: #ff4d6d;
+color: white;
+margin-right: 20px;
+}
+
+#yes.attention {
+transform: scale(1.4);
+box-shadow: 0 0 30px rgba(255, 77, 109, 0.9);
+animation: pulse 0.8s infinite;
+}
+
+@keyframes pulse {
+0% { transform: scale(1.35); }
+50% { transform: scale(1.55); }
+100% { transform: scale(1.35); }
+}
+
+#no {
+background: #aaa;
+color: white;
+position: fixed;
+}
+
+.bottom-text {
+font-size: 14px;
+color: #ff4d6d;
+position: absolute;
+bottom: 15px;
+left: 0;
+right: 0;
+font-style: italic;
+min-height: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<div class="teddy">🧸</div>
+
+<h1> Dhagla...Will you be my Valentine? 💘</h1>
+
+<div class="buttons">
+<button id="yes" onclick="yesClicked()">Yes</button>
+<button id="no">No</button>
+</div>
+
+<div class="bottom-text" id="flirtyText">
+“No” seems a bit shy 😈
+</div>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const flirtyText = document.getElementById("flirtyText");
+
+const flirtyLines = [
+"Playing hard to get already? 😏",
+"Come on… you know you want to 💕",
+"I can be very convincing 😉",
+"That ‘No’ is looking nervous 😈",
+"Just one little yes… 😌",
+"Don’t worry, I’ll take good care of you 🧸💖"
+];
+
+function moveButton() {
+const padding = 20;
+
+const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+const randomX = Math.random() * maxX;
+const randomY = Math.random() * maxY;
+
+noBtn.style.left = randomX + "px";
+noBtn.style.top = randomY + "px";
+
+// Make Yes irresistible 😏
+yesBtn.classList.add("attention");
+
+// Change flirty text
+const randomLine = flirtyLines[Math.floor(Math.random() * flirtyLines.length)];
+flirtyText.textContent = randomLine;
+}
+
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("click", moveButton);
+
+function yesClicked() {
+document.body.innerHTML = `
+<div style="
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+background:#ff4d6d;
+color:white;
+font-size:38px;
+text-align:center;
+padding:20px;
+">
+🧸💖<br>
+Knew it...😍<br><br>
+You’re officially<br>
+my Valentine 💘
+</div>
+`;
+}
+</script>
+
+</body>
+</html>
